@@ -118,11 +118,11 @@ class CABlock(nn.Module):
             conv_only=True,
         )
 
+        self._attention_fn = self._get_attention_fn()
+        
         self.project_out = Convolution(
             spatial_dims=spatial_dims, in_channels=dim, out_channels=dim, kernel_size=1, bias=bias, conv_only=True
         )
-
-        self._attention_fn = self._get_attention_fn()
 
     def _get_attention_fn(self):
         if self.flash_attention:
